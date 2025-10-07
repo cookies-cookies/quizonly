@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { 
     selectUsername, 
     selectUserId, 
-    selectIsVip,
-    selectMembershipLevel,
     selectSubscription,
     selectUsageRecords,
     logout 
@@ -53,8 +51,6 @@ function HomeNew() {
     const navigate = useNavigate();
     const username = useSelector(selectUsername);
     const userId = useSelector(selectUserId);
-    const isVip = useSelector(selectIsVip);
-    const membershipLevel = useSelector(selectMembershipLevel);
     const subscription = useSelector(selectSubscription);
     const usageRecords = useSelector(selectUsageRecords);
     const tasks = useSelector(selectTasks);
@@ -577,75 +573,3 @@ function HomeNew() {
 
 export default HomeNew;
 
-/* 
- * 任务列表使用说明（Redux Store + localStorage 持久化）：
- * 
- * === 本地操作（自动同步到 localStorage）===
- * 
- * 1. 添加新任务：
- *    dispatch(addTask({ 
- *      id: Date.now().toString(), 
- *      fileName: "new-file.pdf", 
- *      status: "processing",
- *      createdAt: new Date().toISOString()
- *    }));
- * 
- * 2. 更新任务状态：
- *    dispatch(updateTaskStatus({ id: "target-id", status: "completed" }));
- * 
- * 3. 更新任务进度：
- *    dispatch(updateTaskProgress({ id: "target-id", progress: 50 }));
- * 
- * 4. 删除任务：
- *    dispatch(removeTask("target-id"));
- * 
- * 5. 清空所有任务：
- *    dispatch(clearTasks());
- * 
- * === API 集成（可选，需要后端支持）===
- * 
- * 6. 从 API 获取任务列表并同步到 localStorage：
- *    import { fetchTasks } from "@/api/task.ts";
- *    
- *    useEffect(() => {
- *      fetchTasks().then(response => {
- *        if (response.status) {
- *          dispatch(setTasks(response.data));
- *        }
- *      });
- *    }, [dispatch]);
- * 
- * 7. 创建任务并同步到服务器：
- *    import { createTask } from "@/api/task.ts";
- *    
- *    const handleUpload = async (file: File) => {
- *      const response = await createTask(file.name, file);
- *      if (response.status) {
- *        dispatch(addTask(response.data));
- *      }
- *    };
- * 
- * 8. WebSocket 实时更新：
- *    import { createTaskWebSocket } from "@/api/task.ts";
- *    
- *    useEffect(() => {
- *      const ws = createTaskWebSocket(
- *        (updatedTask) => dispatch(updateTask(updatedTask))
- *      );
- *      return () => ws.close();
- *    }, [dispatch]);
- * 
- * === 数据查询（Selectors）===
- * 
- * 9. 获取特定状态的任务：
- *    const processingTasks = useSelector(selectProcessingTasks);
- *    const completedTasks = useSelector(selectCompletedTasks);
- *    const failedTasks = useSelector(selectFailedTasks);
- * 
- * === 数据持久化 ===
- * 
- * - 所有操作自动同步到 localStorage（key: "task_list"）
- * - 页面刷新后自动恢复任务列表
- * - 无需后端 API 即可正常工作
- * - 如需后端集成，可使用 @/api/task.ts 中的 API 函数
- */
