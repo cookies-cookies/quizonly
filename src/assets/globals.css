@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --background-light: 0 0% 100%;
+    --background-dark: 0 0% 0%;
+    --background-hover: 170 30% 97%;
+    --background-container: 170, 50%, 98%, 0.8;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-hover: 170 40% 96%;
+    --card-active: 170 50% 92%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 172 50% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 170 60% 69%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 170 30% 95%;
+    --muted-foreground: 172 20% 40%;
+    --accent: 120 73% 75%;
+    --accent-secondary: 170 60% 80%;
+    --accent-foreground: 172 50% 25%;
+    --destructive: 0 67.22% 50.59%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 120 73% 65%;
+    --success-foreground: 0 0% 98%;
+    --failure: 0 67.22% 50.59%;
+    --failure-foreground: 0 0% 98%;
+    --border: 170 30% 88%;
+    --border-hover: 170 40% 75%;
+    --border-active: 172 50% 58%;
+    --input: 170 30% 90%;
+    --input-unread: 172 50% 50%;
+    --ring: 172 50% 58%;
+    --text: 0 0% 0%;
+    --text-light: 0 0% 100%;
+    --text-dark: 0 0% 100%;
+    --text-secondary: 0 0% 35%;
+    --text-secondary-dark: 0 0% 80%;
+    --selection: 172 50% 58%;
+    --selection-foreground: 0 0% 98%;
+    --radius: 0.5rem;
+    --shadow: #5fc9ba10;
+    --assistant-background: hsla(172, 50%, 58%, 0.06);
+    --assistant-border: hsla(172, 50%, 58%, 0.15);
+    --assistant-border-hover: hsla(172, 50%, 58%, 0.3);
+    --assistant-shadow: hsla(172, 50%, 58%, 0.05);
+    --gold: 45 100% 50%;
+    --link: 172 60% 50%;
+    --error: 0 80% 50%;
+  }
+  .dark {
+    --background: 172 30% 5%;
+    --background-hover: 172 25% 10%;
+    --background-container: 172, 30%, 8%, 0.9;
+    --foreground: 170 40% 98%;
+    --card: 172 25% 8%;
+    --card-hover: 172 25% 12%;
+    --card-active: 172 30% 18%;
+    --card-foreground: 0 0% 98%;
+    --popover: 172 25% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 172 50% 58%;
+    --primary-foreground: 172 50% 10%;
+    --secondary: 170 60% 45%;
+    --secondary-foreground: 170 60% 98%;
+    --muted: 172 20% 18%;
+    --muted-foreground: 170 15% 65%;
+    --accent: 120 50% 45%;
+    --accent-secondary: 170 40% 25%;
+    --accent-foreground: 120 73% 85%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 172 20% 20%;
+    --border-hover: 172 30% 30%;
+    --border-active: 172 40% 45%;
+    --input: 172 20% 18%;
+    --input-unread: 172 50% 50%;
+    --ring: 172 50% 58%;
+    --text: 170 30% 95%;
+    --text-secondary: 170 20% 70%;
+    --shadow: #5fc9ba15;
+    --assistant-background: hsla(172, 50%, 58%, 0.12);
+    --assistant-border: hsla(172, 50%, 58%, 0.25);
+    --assistant-border-hover: hsla(172, 50%, 58%, 0.35);
+    --assistant-shadow: hsla(172, 50%, 58%, 0.08);
+  }
+  [type='text']:focus,
+  input:where(:not([type])):focus,
+  [type='email']:focus,
+  [type='url']:focus,
+  [type='password']:focus,
+  [type='number']:focus,
+  [type='date']:focus,
+  [type='datetime-local']:focus,
+  [type='month']:focus,
+  [type='search']:focus,
+  [type='tel']:focus,
+  [type='time']:focus,
+  [type='week']:focus,
+  [multiple]:focus,
+  textarea:focus,
+  select:focus {
+    @apply border-border;
+  }
+}
+* {
+  --tw-ring-color: none !important;
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background, text-foreground;
+  }
+}

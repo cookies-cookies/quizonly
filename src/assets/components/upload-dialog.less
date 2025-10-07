@@ -1,0 +1,232 @@
+/* 上传对话框遮罩层 */
+.upload-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 上传对话框 */
+.upload-dialog {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 头部 */
+.upload-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.upload-dialog-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--text));
+    margin: 0;
+}
+
+.upload-dialog-close {
+    color: hsl(var(--text-secondary));
+    transition: all 0.2s;
+}
+
+.upload-dialog-close:hover {
+    color: hsl(var(--text));
+    background: hsl(var(--muted));
+}
+
+/* 内容区 */
+.upload-dialog-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* 拖拽上传区 */
+.upload-drop-zone {
+    border: 2px dashed hsl(var(--border));
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: hsl(var(--background-hover));
+}
+
+.upload-drop-zone:hover {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.05);
+}
+
+.upload-drop-zone.dragging {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.1);
+    border-style: solid;
+}
+
+.upload-icon {
+    width: 3rem;
+    height: 3rem;
+    color: hsl(var(--primary));
+    margin-bottom: 0.5rem;
+}
+
+.upload-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: hsl(var(--text));
+    margin: 0;
+}
+
+.upload-hint {
+    font-size: 0.875rem;
+    color: hsl(var(--text-secondary));
+    margin: 0;
+}
+
+/* 已选文件列表 */
+.selected-files {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.selected-files-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: hsl(var(--text-secondary));
+    margin: 0;
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.file-item:hover {
+    background: hsl(var(--background-hover));
+    border-color: hsl(var(--primary) / 0.5);
+}
+
+.file-icon {
+    width: 2rem;
+    height: 2rem;
+    color: hsl(var(--primary));
+    flex-shrink: 0;
+}
+
+.file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow: hidden;
+}
+
+.file-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--text));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-size {
+    font-size: 0.75rem;
+    color: hsl(var(--text-secondary));
+}
+
+.file-remove {
+    color: hsl(var(--text-secondary));
+    flex-shrink: 0;
+}
+
+.file-remove:hover {
+    color: hsl(var(--destructive));
+    background: hsl(var(--destructive) / 0.1);
+}
+
+/* 底部 */
+.upload-dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+/* 响应式 */
+@media (max-width: 640px) {
+    .upload-dialog {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .upload-drop-zone {
+        padding: 2rem 1rem;
+    }
+
+    .upload-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
