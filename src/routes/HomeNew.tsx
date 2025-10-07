@@ -378,7 +378,10 @@ function HomeNew() {
                                 <BookOpen className="nav-icon" />
                                 <span>重点备忘</span>
                             </li>
-                            <li className="nav-item">
+                            <li 
+                                className="nav-item"
+                                onClick={() => navigate("/wrong-questions")}
+                            >
                                 <BookOpen className="nav-icon" />
                                 <span>错题集</span>
                             </li>
