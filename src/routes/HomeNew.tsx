@@ -43,6 +43,7 @@ import FolderDialog from "@/components/FolderDialog.tsx";
 import FileBrowser from "@/components/FileBrowser.tsx";
 import SelectFileDialog from "@/components/SelectFileDialog.tsx";
 import MemoBrowser from "@/components/MemoBrowser.tsx";
+import WrongQuestionBrowser from "@/components/WrongQuestionBrowser.tsx";
 import EnhancedSearch from "@/components/EnhancedSearch.tsx";
 import "@/assets/pages/home-new.less";
 
@@ -60,7 +61,7 @@ function HomeNew() {
     const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
     const [folderDialogOpen, setFolderDialogOpen] = useState(false);
     const [selectFileDialogOpen, setSelectFileDialogOpen] = useState(false);
-    const [currentView, setCurrentView] = useState<"documents" | "memos">("documents");
+    const [currentView, setCurrentView] = useState<"documents" | "memos" | "wrongQuestions">("documents");
     const [leftSidebarWidth, setLeftSidebarWidth] = useState(240);
     const [isDragging, setIsDragging] = useState(false);
     const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -241,7 +242,7 @@ function HomeNew() {
     };
 
     // 切换视图
-    const handleViewChange = (view: "documents" | "memos") => {
+    const handleViewChange = (view: "documents" | "memos" | "wrongQuestions") => {
         setCurrentView(view);
         if (view === "documents") {
             dispatch(setCurrentFolder(null));
@@ -375,8 +376,8 @@ function HomeNew() {
                                 <span>重点备忘</span>
                             </li>
                             <li 
-                                className="nav-item"
-                                onClick={() => navigate("/wrong-questions")}
+                                className={`nav-item ${currentView === "wrongQuestions" ? "active" : ""}`}
+                                onClick={() => handleViewChange("wrongQuestions")}
                             >
                                 <BookOpen className="nav-icon" />
                                 <span>错题集</span>
@@ -419,14 +420,18 @@ function HomeNew() {
                                 ))}
                             </div>
                             <div className="toolbar-actions">
-                                <Button variant="outline" size="sm" onClick={handleOpenUpload}>
-                                    <Upload className="h-4 w-4 mr-1" />
-                                    上传课件
-                                </Button>
-                                <Button variant="outline" size="sm" onClick={handleCreateFolder}>
-                                    <FolderPlus className="h-4 w-4 mr-1" />
-                                    新建文件夹
-                                </Button>
+                                {currentView === "documents" && (
+                                    <>
+                                        <Button variant="outline" size="sm" onClick={handleOpenUpload}>
+                                            <Upload className="h-4 w-4 mr-1" />
+                                            上传课件
+                                        </Button>
+                                        <Button variant="outline" size="sm" onClick={handleCreateFolder}>
+                                            <FolderPlus className="h-4 w-4 mr-1" />
+                                            新建文件夹
+                                        </Button>
+                                    </>
+                                )}
                             </div>
                         </div>
                         <div className="top-right-actions">
@@ -564,7 +569,13 @@ function HomeNew() {
                     </div>
 
                     {/* 内容浏览器 - 根据 currentView 切换 */}
-                    {currentView === "documents" ? <FileBrowser /> : <MemoBrowser />}
+                    {currentView === "documents" ? (
+                        <FileBrowser />
+                    ) : currentView === "memos" ? (
+                        <MemoBrowser />
+                    ) : (
+                        <WrongQuestionBrowser />
+                    )}
                 </div>
             </main>
         </div>

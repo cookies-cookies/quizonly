@@ -38,7 +38,6 @@ const Subscription = lazyFactor(
 const Logger = lazyFactor(() => import("@/routes/admin/Logger.tsx"));
 const MemoDetail = lazyFactor(() => import("@/routes/MemoDetail.tsx"));
 const PDFViewer = lazyFactor(() => import("@/routes/PDFViewer.tsx"));
-const WrongQuestions = lazyFactor(() => import("@/routes/WrongQuestions.tsx"));
 
 const router = createBrowserRouter(
   [
@@ -159,18 +158,6 @@ const router = createBrowserRouter(
         <AuthRequired>
           <Suspense>
             <PDFViewer />
-          </Suspense>
-        </AuthRequired>
-      ),
-      ErrorBoundary: NotFound,
-    },
-    {
-      id: "wrong-questions",
-      path: "/wrong-questions",
-      element: (
-        <AuthRequired>
-          <Suspense>
-            <WrongQuestions />
           </Suspense>
         </AuthRequired>
       ),
